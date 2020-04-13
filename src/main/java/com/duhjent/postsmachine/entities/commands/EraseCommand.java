@@ -1,5 +1,6 @@
 package com.duhjent.postsmachine.entities.commands;
 
+import com.duhjent.postsmachine.MachineException;
 import com.duhjent.postsmachine.entities.Tape;
 
 import lombok.Data;
