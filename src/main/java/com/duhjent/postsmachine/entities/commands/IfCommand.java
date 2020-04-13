@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class IfCommand implements Command{
-    int notCommand, yesCommand;
+    private final int notCommand, yesCommand;
 
     @Override
     public int execute(Tape tape){

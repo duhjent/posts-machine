@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 public class MarkCommand implements Command{
-    int next;
+    private final int next;
 
     @Override
     public int execute(Tape tape){

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class RightCommand implements Command{
-    int next;
+    private final int next;
 
     @Override
     public int execute(Tape tape){

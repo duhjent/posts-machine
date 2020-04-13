@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 public class EraseCommand implements Command{
-    int next;
+    private final int next;
 
     @Override
     public int execute(Tape tape){
