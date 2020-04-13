@@ -1,0 +1,16 @@
+package com.duhjent.postsmachine.entities.commands;
+
+import com.duhjent.postsmachine.entities.Tape;
+
+import lombok.Data;
+
+@Data
+public class IfCommand implements Command{
+    int notCommand, yesCommand;
+
+    @Override
+    public int execute(Tape tape){
+        return tape.getState() ? yesCommand : notCommand;
+    }
+
+}
