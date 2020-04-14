@@ -4,4 +4,5 @@ import com.duhjent.postsmachine.entities.Tape;
 
 public interface Command {
     int execute(Tape tape);
+    String toString();
 }

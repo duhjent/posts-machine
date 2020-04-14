@@ -14,4 +14,9 @@ public class LeftCommand implements Command {
         tape.moveLeft();
         return next;
     }
+
+    @Override
+    public String toString(){
+        return "Left: " + next;
+    }
 }

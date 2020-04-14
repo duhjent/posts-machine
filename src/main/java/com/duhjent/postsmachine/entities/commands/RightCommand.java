@@ -13,4 +13,9 @@ public class RightCommand implements Command{
         tape.moveRight();
         return next;
     }
+
+    @Override
+    public String toString(){
+        return "Right: " + next;
+    }
 }

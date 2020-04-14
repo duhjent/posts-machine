@@ -13,4 +13,9 @@ public class IfCommand implements Command{
         return tape.getState() ? yesCommand : notCommand;
     }
 
+    @Override
+    public String toString(){
+        return "If: " + notCommand + " " + yesCommand;
+    }
+
 }

@@ -17,4 +17,9 @@ public class MarkCommand implements Command{
         return next;
     }
 
+    @Override
+    public String toString(){
+        return "Mark: " + next;
+    }
+
 }

@@ -17,4 +17,9 @@ public class EraseCommand implements Command{
         return next;
     }
 
+    @Override
+    public String toString(){
+        return "Erase: " + next;
+    }
+
 }

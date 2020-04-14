@@ -8,5 +8,10 @@ public class StopCommand implements Command {
     public int execute(Tape tape) {
         return -1;
     }
+
+    @Override
+    public String toString(){
+        return "Stop";
+    }
     
 }
