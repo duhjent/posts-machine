@@ -6,8 +6,20 @@
     </head>
     <body>
         <h1>Design a machine</h1>
-        <form method="POST" th:object="${design}">
-            <h3>Chhose your file:</h3>
+        <form method="POST" th:object="${design}" >
+            <table>
+                <tr><td>
+                    Choose your file:
+                </td><td>
+                    <input type="file" th:field="*{commandFile}" />
+                </td></tr>
+                <tr><td>
+                    Enter the tape values with 0s and 1s:
+                </td><td>
+                    <input type="text" th:field="*{tapeString}" />
+                </td></tr>
+                <tr><td></td><td><input type="submit" value="Submit" /></td></tr>
+            </table>
         </form>
     </body>
 </html>

@@ -30,7 +30,7 @@ public class MachineController {
 
     @GetMapping
     public String showMachines(Model model){
-        model.addAttribute("machineList", machineRepo.findAll());
+        // model.addAttribute("machineList", machineRepo.findAll());
         return "machines";
     }
 
