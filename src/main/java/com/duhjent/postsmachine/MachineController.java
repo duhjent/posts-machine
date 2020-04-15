@@ -3,9 +3,7 @@ package com.duhjent.postsmachine;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import com.duhjent.postsmachine.data.MachineRepo;
 import com.duhjent.postsmachine.entities.Machine;
@@ -31,18 +29,9 @@ public class MachineController {
     private MachineRepo machineRepo;
 
     @GetMapping
-    public String machineDesignForm(Model model){
-        model.addAttribute("machines", StreamSupport.stream(machineRepo.findAll().spliterator(), false)
-            .map(machine -> MvcUriComponentsBuilder
-            .fromMethodName(MachineController.class, "serveMachine", machine.getId())
-            .build().toUri().toString()).collect(Collectors.toList()));
+    public String showMachines(Model model){
+        model.addAttribute("machineList", machineRepo.findAll());
         return "machines";
-    }
-
-    @PostMapping
-    public String saveDesign(Machine machine){
-        machineRepo.save(machine);
-        return "redirect:/machines";
     }
 
     @GetMapping("/{id}")
