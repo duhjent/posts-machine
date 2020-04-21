@@ -1,5 +1,8 @@
 package com.duhjent.postsmachine.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,83 +15,48 @@ public class Tape {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private Node head;
-	
-	private Node current;
+	private List<Boolean> list = new ArrayList<Boolean>();
 
-	private class Node{
-		private boolean state;
-		private Node next;
-		private Node prev;
-		
-		public Node(boolean state) {
-			this.state = state;
-			this.next = null;
-			this.prev = null;
-		}
-		
-		public boolean getState() {
-			return this.state;
-		}
-		
-		@Override
-		public String toString() {
-			if(this.state) return "1";
-			else return "0";
+	int currentpos = 0;
+
+	public Tape(String string){
+		list.add(false);
+		int len = string.length();
+		for(int i = 0; i < len; i++){
+			list.add(string.charAt(i) == '1');
 		}
 	}
-	
-	public Tape(String s) {
-		this.head = this.current = new Node(false);
-		for(int i = 0; i < s.length(); i++) {
-			this.append(s.charAt(i) == '1');
+
+	public void moveLeft(){
+		if(currentpos == 0){
+			this.list.add(0, false);
+		}
+		else{
+			currentpos--;
 		}
 	}
-	
-	private void append(boolean state) {
-		Node temp = this.head;
-		while(temp.next != null)
-			temp = temp.next;
-		Node newNode = new Node(state);
-		temp.next = newNode;
-		newNode.next = null;
-		newNode.prev = temp;
+
+	public void moveRight(){
+		if(currentpos == (this.list.size() - 1)){
+			this.list.add(false);
+		}
+		currentpos++;
 	}
-	
-	private void insertToStart(boolean state) {
-		Node newNode = new Node(state);
-		this.head.prev = newNode;
-		newNode.next = head;
-		newNode.prev = null;
-		this.head = newNode;
+
+	public boolean getState(){
+		return this.list.get(currentpos);
 	}
-	
-	public void moveLeft() {
-		if(current.prev == null) this.insertToStart(false);
-		current = current.prev;
+
+	public void setState(boolean state){
+		this.list.set(currentpos, state);
 	}
-	
-	public void moveRight() {
-		if(current.next == null) this.append(false);
-		current = current.next;
-	}
-	
-	public boolean getState() {
-		return current.getState();
-	}
-	
-	public void setState(boolean state) {
-		this.current.state = state;
-	}
-	
+
 	@Override
-	public String toString() {
-		StringBuilder result = new StringBuilder();
-		Node temp = head;
-		while(temp != null) {
-			result.append(temp.toString());
-			temp = temp.next;
+	public String toString(){
+		StringBuilder builder = new StringBuilder();
+		for(boolean b: this.list){
+			builder.append(b ? "1" : "0");
 		}
-		return result.toString();
+		return builder.toString();
 	}
 }
