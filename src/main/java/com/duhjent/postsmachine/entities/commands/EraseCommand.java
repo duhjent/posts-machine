@@ -1,12 +1,15 @@
 package com.duhjent.postsmachine.entities.commands;
 
+import javax.persistence.Entity;
+
 import com.duhjent.postsmachine.MachineException;
 import com.duhjent.postsmachine.entities.Tape;
 
 import lombok.Data;
 
 @Data
-public class EraseCommand implements Command{
+@Entity
+public class EraseCommand extends Command{
     private final int next;
 
     @Override

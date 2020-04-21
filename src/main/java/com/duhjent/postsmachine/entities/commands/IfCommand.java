@@ -1,11 +1,14 @@
 package com.duhjent.postsmachine.entities.commands;
 
+import javax.persistence.Entity;
+
 import com.duhjent.postsmachine.entities.Tape;
 
 import lombok.Data;
 
 @Data
-public class IfCommand implements Command{
+@Entity
+public class IfCommand extends Command{
     private final int notCommand, yesCommand;
 
     @Override

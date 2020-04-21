@@ -1,11 +1,14 @@
 package com.duhjent.postsmachine.entities.commands;
 
+import javax.persistence.Entity;
+
 import com.duhjent.postsmachine.entities.Tape;
 
 import lombok.Data;
 
 @Data
-public class LeftCommand implements Command {
+@Entity
+public class LeftCommand extends Command {
 
     private final int next;
     

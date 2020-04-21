@@ -1,6 +1,17 @@
 package com.duhjent.postsmachine.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Tape {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
 	private Node head;
 	
 	private Node current;

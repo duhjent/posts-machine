@@ -2,7 +2,9 @@ package com.duhjent.postsmachine;
 
 import javax.validation.Valid;
 
+import com.duhjent.postsmachine.data.CommandRepo;
 import com.duhjent.postsmachine.data.MachineRepo;
+import com.duhjent.postsmachine.data.TapeRepo;
 import com.duhjent.postsmachine.entities.Machine;
 import com.duhjent.postsmachine.entities.MachinePrototype;
 
@@ -18,10 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/design")
 public class MachineDesignController {
     private MachineRepo machineRepo;
+    private TapeRepo tapeRepo;
+    private CommandRepo commandRepo;
 
     @Autowired
-    public MachineDesignController(MachineRepo machineRepo){
+    public MachineDesignController(MachineRepo machineRepo, TapeRepo tapeRepo, CommandRepo commandRepo){
         this.machineRepo = machineRepo;
+        this.tapeRepo = tapeRepo;
+        this.commandRepo = commandRepo;
     }
     
     @ModelAttribute(name = "design")
@@ -39,8 +45,12 @@ public class MachineDesignController {
         if(errors.hasErrors()){
             return "design";
         }
-        
-        machineRepo.save(design.getMachine());
-        return "redirect:/machines";
+        Machine machine = design.getMachine();
+
+        tapeRepo.save(machine.getTape());
+        commandRepo.saveAll(machine.getCommands());
+        machineRepo.save(machine);
+
+        return "design";
     }
 }

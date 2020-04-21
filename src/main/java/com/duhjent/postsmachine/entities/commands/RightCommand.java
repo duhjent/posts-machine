@@ -1,11 +1,14 @@
 package com.duhjent.postsmachine.entities.commands;
 
+import javax.persistence.Entity;
+
 import com.duhjent.postsmachine.entities.Tape;
 
 import lombok.Data;
 
 @Data
-public class RightCommand implements Command{
+@Entity
+public class RightCommand extends Command{
     private final int next;
 
     @Override
