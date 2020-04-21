@@ -15,21 +15,21 @@ public class Tape {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private List<Boolean> list = new ArrayList<Boolean>();
+	private String vals;
 
-	int currentpos = 0;
+	int currentpos;
 
-	public Tape(String string){
-		list.add(false);
-		int len = string.length();
-		for(int i = 0; i < len; i++){
-			list.add(string.charAt(i) == '1');
-		}
+	public Tape(String vals){
+		this.vals = vals;
+		this.currentpos = 0;
 	}
 
 	public void moveLeft(){
 		if(currentpos == 0){
-			this.list.add(0, false);
+			StringBuilder builder = new StringBuilder();
+			builder.append("0");
+			builder.append(this.vals);
+			this.vals = builder.toString();
 		}
 		else{
 			currentpos--;
@@ -37,26 +37,25 @@ public class Tape {
 	}
 
 	public void moveRight(){
-		if(currentpos == (this.list.size() - 1)){
-			this.list.add(false);
+		if(currentpos == (this.vals.length() - 1)){
+			StringBuilder builder = new StringBuilder(this.vals);
+			builder.append("0");
+			this.vals = builder.toString();
 		}
 		currentpos++;
 	}
 
 	public boolean getState(){
-		return this.list.get(currentpos);
+		return this.vals.charAt(currentpos) == '1';
 	}
 
 	public void setState(boolean state){
-		this.list.set(currentpos, state);
+		StringBuilder builder = new StringBuilder(this.vals);
+		builder.setCharAt(currentpos, state ? '1' : '0');
 	}
 
 	@Override
 	public String toString(){
-		StringBuilder builder = new StringBuilder();
-		for(boolean b: this.list){
-			builder.append(b ? "1" : "0");
-		}
-		return builder.toString();
+		return vals;
 	}
 }
