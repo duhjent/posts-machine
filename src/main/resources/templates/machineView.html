@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>machine view</title>
+    </head>
+    <body>
+        <p th:text="tape">tape</p>
+        <ol start="0">
+            <li th:each="command : commands">command</li>
+        </ol>
+    </body>
+</html>
