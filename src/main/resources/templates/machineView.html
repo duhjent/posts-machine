@@ -1,13 +1,25 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>machine view</title>
-    </head>
-    <body>
-        <p th:text="tape">tape</p>
-        <ol start="0">
-            <li th:each="command : commands">command</li>
-        </ol>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${pageTitle}"></title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>Tape:</td>
+            <td th:text="${tape}">tape</td>
+        </tr>
+        <tr>
+            <td>Commands:</td>
+            <td>
+                <ol start="0">
+                    <li th:each="command : ${commands}" th:text="${command}"></li>
+                </ol>
+            </td>
+        </tr>
+    </table>
+</body>
+
 </html>

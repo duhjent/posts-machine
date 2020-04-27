@@ -18,24 +18,22 @@ public class MachineController {
     private MachineRepo machineRepo;
 
     @Autowired
-    public MachineController(MachineRepo machineRepo){
+    public MachineController(MachineRepo machineRepo) {
         this.machineRepo = machineRepo;
     }
 
     @GetMapping
-    public String showMachines(Model model){
+    public String showMachines(Model model) {
         model.addAttribute("machineList", machineRepo.findAll());
         return "machines";
     }
 
     @GetMapping("/{id}")
-    public String serveMachine(@PathVariable Long id, Model model){
+    public String serveMachine(@PathVariable Long id, Model model) {
         model.addAttribute("tape", machineRepo.findById(id).get().getTape().toString());
-        model.addAttribute(
-            "commands",
-            machineRepo.findById(id).get().getCommands().stream()
-            .map(Command::toString)
-            .collect(Collectors.toList()));
+        model.addAttribute("commands", machineRepo.findById(id).get().getCommands().stream().map(Command::toString)
+                .collect(Collectors.toList()));
+        model.addAttribute("pageTitle", "Machine #" + id);
         return "machineView";
     }
 }
