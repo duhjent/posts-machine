@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Post's machine</title>
+</head>
+
+<body>
+    <div th:if="${message}">
+        <h2 th:text="${message}"/>
+    </div>
+
+    <h1>Design a machine</h1>
+    <form method="POST" th:object="${design}" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>
+                    Choose your file:
+                </td>
+                <td>
+                    <input type="file" th:field="*{commandFile}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Enter the tape values with 0s and 1s:
+                </td>
+                <td>
+                    <input type="text" th:field="*{tapeString}" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

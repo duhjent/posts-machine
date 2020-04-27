@@ -13,6 +13,7 @@ public class MachinePrototype {
     @NotNull
     private String tapeString;
     
+    @NotNull
     private MultipartFile commandFile;
 
     public Machine getMachine(){

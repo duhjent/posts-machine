@@ -9,8 +9,11 @@ import javax.persistence.InheritanceType;
 
 import com.duhjent.postsmachine.entities.Tape;
 
+import lombok.NoArgsConstructor;
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@NoArgsConstructor
 public abstract class Command {
 
     @Id

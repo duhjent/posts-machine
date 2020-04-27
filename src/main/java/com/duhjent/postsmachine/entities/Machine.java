@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.duhjent.postsmachine.MachineException;
@@ -19,7 +20,7 @@ public class Machine {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne(targetEntity = Command.class)
+    @OneToMany(targetEntity = Command.class)
     private List<Command> commands;
     @OneToOne(targetEntity = Tape.class)
     private Tape tape;

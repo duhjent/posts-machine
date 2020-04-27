@@ -4,7 +4,10 @@ import javax.persistence.Entity;
 
 import com.duhjent.postsmachine.entities.Tape;
 
+import lombok.NoArgsConstructor;
+
 @Entity
+@NoArgsConstructor
 public class StopCommand extends Command {
 
     @Override

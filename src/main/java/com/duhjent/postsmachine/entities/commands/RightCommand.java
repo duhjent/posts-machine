@@ -5,11 +5,17 @@ import javax.persistence.Entity;
 import com.duhjent.postsmachine.entities.Tape;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class RightCommand extends Command{
-    private final int next;
+    private int next;
+    
+    public RightCommand(int next){
+        this.next = next;
+    }
 
     @Override
     public int execute(Tape tape){

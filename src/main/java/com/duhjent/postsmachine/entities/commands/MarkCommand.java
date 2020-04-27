@@ -6,11 +6,17 @@ import com.duhjent.postsmachine.MachineException;
 import com.duhjent.postsmachine.entities.Tape;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class MarkCommand extends Command{
-    private final int next;
+    private int next;
+
+    public MarkCommand(int next){
+        this.next = next;
+    }
 
     @Override
     public int execute(Tape tape){

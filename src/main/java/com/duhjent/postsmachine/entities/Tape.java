@@ -5,36 +5,41 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class Tape {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String vals;
 
 	int currentpos;
 
-	public Tape(String vals){
+	public Tape(String vals) {
 		this.vals = vals;
 		this.currentpos = 0;
 	}
 
-	public void moveLeft(){
-		if(currentpos == 0){
+	public Tape() {
+	}
+
+	public void moveLeft() {
+		if (currentpos == 0) {
 			StringBuilder builder = new StringBuilder();
 			builder.append("0");
 			builder.append(this.vals);
 			this.vals = builder.toString();
-		}
-		else{
+		} else {
 			currentpos--;
 		}
 	}
 
-	public void moveRight(){
-		if(currentpos == (this.vals.length() - 1)){
+	public void moveRight() {
+		if (currentpos == (this.vals.length() - 1)) {
 			StringBuilder builder = new StringBuilder(this.vals);
 			builder.append("0");
 			this.vals = builder.toString();
@@ -42,17 +47,17 @@ public class Tape {
 		currentpos++;
 	}
 
-	public boolean getState(){
+	public boolean getState() {
 		return this.vals.charAt(currentpos) == '1';
 	}
 
-	public void setState(boolean state){
+	public void setState(boolean state) {
 		StringBuilder builder = new StringBuilder(this.vals);
 		builder.setCharAt(currentpos, state ? '1' : '0');
 	}
 
 	@Override
-	public String toString(){
+	public String toString() {
 		return vals;
 	}
 }

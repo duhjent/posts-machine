@@ -10,11 +10,12 @@ import com.duhjent.postsmachine.entities.MachinePrototype;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
+// import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/design")
@@ -37,20 +38,23 @@ public class MachineDesignController {
     
     @GetMapping
     public String showDesignForm(){
-        return "design";
+        return "designForm";
     }
 
     @PostMapping
-    public String saveDesign(@Valid MachinePrototype design, Errors errors){
-        if(errors.hasErrors()){
-            return "design";
-        }
+    public String saveDesign(@Valid MachinePrototype design , RedirectAttributes redirectAttributes){
+        // if(errors.hasErrors()){
+        //     return "design";
+        // }
+
         Machine machine = design.getMachine();
 
         tapeRepo.save(machine.getTape());
         commandRepo.saveAll(machine.getCommands());
         machineRepo.save(machine);
 
-        return "design";
+        redirectAttributes.addFlashAttribute("message", "You succesfully created a machine");
+
+        return "redirect:/design";
     }
 }
