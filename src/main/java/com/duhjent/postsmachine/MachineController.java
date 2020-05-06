@@ -33,7 +33,7 @@ public class MachineController {
         model.addAttribute("tape", machineRepo.findById(id).get().getTape().toString());
         model.addAttribute("commands", machineRepo.findById(id).get().getCommands().stream().map(Command::toString)
                 .collect(Collectors.toList()));
-        model.addAttribute("pageTitle", "Machine #" + id);
+        model.addAttribute("pageTitle", machineRepo.findById(id).get().getName());
         return "machineView";
     }
 }

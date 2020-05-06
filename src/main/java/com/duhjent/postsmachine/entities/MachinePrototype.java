@@ -12,6 +12,8 @@ import lombok.Data;
 public class MachinePrototype {
     @NotNull
     private String tapeString;
+
+    private String name;
     
     @NotNull
     private MultipartFile commandFile;
@@ -20,6 +22,7 @@ public class MachinePrototype {
         Machine machine = new Machine();
         machine.setTape(new Tape(tapeString));
         machine.setCommands(CommandReader.read(commandFile));
+        machine.setName(name);
         return machine;
     }
 }
