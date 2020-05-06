@@ -19,6 +19,20 @@
                 </ol>
             </td>
         </tr>
+        <form method="post" enctype="multipart/form-data">
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Execute" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Result:
+            </td>
+            <td th:if="${result}" th:text="${result}"></td>
+        </tr>
+        </form>
     </table>
 </body>
 

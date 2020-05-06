@@ -54,6 +54,7 @@ public class Tape {
 	public void setState(boolean state) {
 		StringBuilder builder = new StringBuilder(this.vals);
 		builder.setCharAt(currentpos, state ? '1' : '0');
+		this.vals = builder.toString();
 	}
 
 	@Override
