@@ -11,14 +11,14 @@ for Linux and (probably) OS X.
 Then in your browser open up `localhost:8080/` and start using the app.
 # Usage
 The machine has the following commands:
-```
-% 'percent' means a comment
-V x % marks the node and moves to the command num. x
-X x % erases the node and moves to the command num. x
-> x % moves right and moves to the command num. x
-< x % moves left and moves to the command num. x
-? x y % if the current node is emty, go to x, else to y
-! % stops execution
+```ruby
+# 'hash' means a comment
+V x # marks the node and moves to the command num. x
+X x # erases the node and moves to the command num. x
+> x # moves right and moves to the command num. x
+< x # moves left and moves to the command num. x
+? x y # if the current node is emty, go to x, else to y
+! # stops execution
 ```
 Command numerations start from 0.
 
