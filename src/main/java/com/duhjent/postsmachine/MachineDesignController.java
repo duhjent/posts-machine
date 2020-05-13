@@ -44,11 +44,9 @@ public class MachineDesignController {
 
     @PostMapping
     public String saveDesign(@Valid MachinePrototype design, Errors errors, RedirectAttributes redirectAttributes) {
-    public String saveDesign(@Valid MachinePrototype design , RedirectAttributes redirectAttributes){
-        // if(errors.hasErrors()){
-        //     return "design";
-        // }
-
+        if (errors.hasErrors()) {
+            return "designForm";
+        }
         try {
             Machine machine = design.getMachine();
 

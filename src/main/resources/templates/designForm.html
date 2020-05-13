@@ -23,6 +23,7 @@
                 <td>
                     <input type="text" th:field="*{name}" />
                 </td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</td>
             </tr>
             <tr>
                 <td>
@@ -31,6 +32,7 @@
                 <td>
                     <input type="file" th:field="*{commandFile}" />
                 </td>
+                <td th:if="${#fields.hasErrors('commandFile')}" th:errors="*{commandFile}">file error</td>
             </tr>
             <tr>
                 <td>
@@ -39,6 +41,7 @@
                 <td>
                     <input type="text" th:field="*{tapeString}" />
                 </td>
+                <td th:if="${#fields.hasErrors('tapeString')}" th:errors="*{tapeString}">tape error</td>
             </tr>
             <tr>
                 <td></td>
