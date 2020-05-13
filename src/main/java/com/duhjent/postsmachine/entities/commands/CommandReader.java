@@ -13,8 +13,9 @@ public class CommandReader {
         List<Command> commandList = new ArrayList<Command>();
         try{
 			Scanner s = new Scanner(multipartFile.getInputStream());
+			String str;
 			while(s.hasNext()) {
-				switch(s.next()) {
+				switch(str = s.next()) {
 					case "V":
 						commandList.add(new MarkCommand(s.nextInt()));
 						break;
@@ -32,6 +33,11 @@ public class CommandReader {
 						break;
 					case "!":
 						commandList.add(new StopCommand());
+						break;
+					default:
+						if(str.contains("#")){
+							s.nextLine();
+						} else{
 						break;
 				}
 			}
