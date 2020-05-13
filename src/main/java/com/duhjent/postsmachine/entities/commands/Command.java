@@ -8,6 +8,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import com.duhjent.postsmachine.entities.Tape;
+import com.duhjent.postsmachine.exceptions.MachineException;
 
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,6 @@ public abstract class Command {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public abstract int execute(Tape tape);
+    public abstract int execute(Tape tape) throws MachineException;
     public abstract String toString();
 }

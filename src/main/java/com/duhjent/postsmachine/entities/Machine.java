@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import com.duhjent.postsmachine.MachineException;
+import com.duhjent.postsmachine.exceptions.MachineException;
 import com.duhjent.postsmachine.entities.commands.Command;
 
 import lombok.Data;

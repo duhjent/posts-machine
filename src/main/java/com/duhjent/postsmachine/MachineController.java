@@ -6,6 +6,7 @@ import com.duhjent.postsmachine.data.MachineRepo;
 import com.duhjent.postsmachine.entities.Machine;
 import com.duhjent.postsmachine.entities.Tape;
 import com.duhjent.postsmachine.entities.commands.Command;
+import com.duhjent.postsmachine.exceptions.MachineException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
