@@ -7,10 +7,11 @@ import com.duhjent.postsmachine.data.MachineRepo;
 import com.duhjent.postsmachine.data.TapeRepo;
 import com.duhjent.postsmachine.entities.Machine;
 import com.duhjent.postsmachine.entities.MachinePrototype;
+import com.duhjent.postsmachine.exceptions.ParseException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-// import org.springframework.validation.Errors;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,35 +26,41 @@ public class MachineDesignController {
     private CommandRepo commandRepo;
 
     @Autowired
-    public MachineDesignController(MachineRepo machineRepo, TapeRepo tapeRepo, CommandRepo commandRepo){
+    public MachineDesignController(MachineRepo machineRepo, TapeRepo tapeRepo, CommandRepo commandRepo) {
         this.machineRepo = machineRepo;
         this.tapeRepo = tapeRepo;
         this.commandRepo = commandRepo;
     }
-    
+
     @ModelAttribute(name = "design")
-    public MachinePrototype design(){
+    public MachinePrototype design() {
         return new MachinePrototype();
     }
-    
+
     @GetMapping
-    public String showDesignForm(){
+    public String showDesignForm() {
         return "designForm";
     }
 
     @PostMapping
+    public String saveDesign(@Valid MachinePrototype design, Errors errors, RedirectAttributes redirectAttributes) {
     public String saveDesign(@Valid MachinePrototype design , RedirectAttributes redirectAttributes){
         // if(errors.hasErrors()){
         //     return "design";
         // }
 
-        Machine machine = design.getMachine();
+        try {
+            Machine machine = design.getMachine();
 
-        tapeRepo.save(machine.getTape());
-        commandRepo.saveAll(machine.getCommands());
-        machineRepo.save(machine);
+            tapeRepo.save(machine.getTape());
+            commandRepo.saveAll(machine.getCommands());
+            Machine saved = machineRepo.save(machine);
 
-        redirectAttributes.addFlashAttribute("message", "You succesfully created a machine");
+            redirectAttributes.addFlashAttribute("message", "You succesfully created a machine");
+            redirectAttributes.addFlashAttribute("id", saved.getId());
+        } catch (ParseException e) {
+            redirectAttributes.addFlashAttribute("message", "Error parsing commands");
+        }
 
         return "redirect:/design";
     }

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.duhjent.postsmachine.exceptions.ParseException;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
 public class CommandReader {
-    public static List<Command> read(MultipartFile multipartFile) {
+    public static List<Command> read(MultipartFile multipartFile) throws ParseException {
         List<Command> commandList = new ArrayList<Command>();
         try{
 			Scanner s = new Scanner(multipartFile.getInputStream());
@@ -38,6 +40,8 @@ public class CommandReader {
 						if(str.contains("#")){
 							s.nextLine();
 						} else{
+							throw new ParseException("Invalid command");
+						}
 						break;
 				}
 			}
