@@ -28,10 +28,13 @@ public class Machine {
     @OneToOne(targetEntity = Tape.class)
     private Tape tape;
 
+    // here is a kostyl', not enough knowledge in asynchronous programming
     public Tape execute() throws MachineException {
+        long start = System.currentTimeMillis();
         int nextCommand = commands.get(0).execute(tape);
         while (nextCommand != -1) {
-            if (Thread.currentThread().interrupted()) {
+            long commandTime = System.currentTimeMillis();
+            if (commandTime - start > 1000) {
                 throw new MachineException("Machine ran out of time");
             }
             nextCommand = commands.get(nextCommand).execute(tape);

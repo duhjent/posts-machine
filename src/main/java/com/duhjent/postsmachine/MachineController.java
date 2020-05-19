@@ -49,7 +49,7 @@ public class MachineController {
             Tape tape = machine.execute();
             redirectAttributes.addFlashAttribute("result", tape.toString());
         } catch (MachineException e) {
-            redirectAttributes.addFlashAttribute("result", e.toString());
+            redirectAttributes.addFlashAttribute("result", "Error: " + e.getMessage());
         }
         return "redirect:/machines/{id}";
     }
