@@ -20,7 +20,7 @@ X x # erases the node and moves to the command num. x
 ? x y # if the current node is emty, go to x, else to y
 ! # stops execution
 ```
-Command numerations start from 0.
+Command numerations start from 0. By default, all nodes (that are not written explicitly) are zeroes.
 
 As an example, you can use the following program:
 ```
