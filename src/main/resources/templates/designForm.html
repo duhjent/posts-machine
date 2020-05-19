@@ -14,7 +14,7 @@
     </div>
 
     <h1>Design a machine</h1>
-    <form method="POST" th:object="${design}" enctype="multipart/form-data">
+    <form method="POST" th:action="@{/design}" th:object="${machineBuilder}" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>

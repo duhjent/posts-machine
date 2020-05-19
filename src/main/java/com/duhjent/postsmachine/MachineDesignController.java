@@ -6,14 +6,13 @@ import com.duhjent.postsmachine.data.CommandRepo;
 import com.duhjent.postsmachine.data.MachineRepo;
 import com.duhjent.postsmachine.data.TapeRepo;
 import com.duhjent.postsmachine.entities.Machine;
-import com.duhjent.postsmachine.entities.MachinePrototype;
+import com.duhjent.postsmachine.entities.MachineBuilder;
 import com.duhjent.postsmachine.exceptions.ParseException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -32,23 +31,19 @@ public class MachineDesignController {
         this.commandRepo = commandRepo;
     }
 
-    @ModelAttribute(name = "design")
-    public MachinePrototype design() {
-        return new MachinePrototype();
-    }
-
     @GetMapping
-    public String showDesignForm() {
+    public String showDesignForm(MachineBuilder machineBuilder) {
         return "designForm";
     }
 
     @PostMapping
-    public String saveDesign(@Valid MachinePrototype design, Errors errors, RedirectAttributes redirectAttributes) {
-        if (errors.hasErrors()) {
+    public String saveDesign(@Valid MachineBuilder machineBuilder, BindingResult bindingResult,
+            RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors() || machineBuilder.getCommandFile().isEmpty()) {
             return "designForm";
         }
         try {
-            Machine machine = design.getMachine();
+            Machine machine = machineBuilder.getMachine();
 
             tapeRepo.save(machine.getTape());
             commandRepo.saveAll(machine.getCommands());
