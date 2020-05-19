@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 
 import com.duhjent.postsmachine.entities.commands.CommandReader;
 import com.duhjent.postsmachine.exceptions.ParseException;
+import com.duhjent.postsmachine.validation.FileNotEmpty;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,7 @@ public class MachineBuilder {
     @Size(min = 5, message = "The name must be at least 5 characters long")
     private String name;
 
+    @FileNotEmpty
     private MultipartFile commandFile;
 
     public Machine getMachine() throws ParseException{

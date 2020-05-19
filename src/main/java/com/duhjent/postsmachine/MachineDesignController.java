@@ -39,7 +39,7 @@ public class MachineDesignController {
     @PostMapping
     public String saveDesign(@Valid MachineBuilder machineBuilder, BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors() || machineBuilder.getCommandFile().isEmpty()) {
+        if (bindingResult.hasErrors()) {
             return "designForm";
         }
         try {
