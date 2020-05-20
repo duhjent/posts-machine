@@ -1,4 +1,4 @@
-package com.duhjent.postsmachine;
+package com.duhjent.postsmachine.controllers;
 
 import javax.validation.Valid;
 
