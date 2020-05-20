@@ -1,3 +1,7 @@
+[Github](https://github.com/duhjent/posts-machine)
+
+Student: Sabov Viktor CS-115.
+
 # Install and run
 All you need is to move into the directory and run
 ```bash
